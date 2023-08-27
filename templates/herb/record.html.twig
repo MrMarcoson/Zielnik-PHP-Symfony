@@ -1,0 +1,56 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello HerbController!{% endblock %}
+
+{% block body %}
+
+<div class="example-wrapper">
+    <center>
+        {% if herb.glagolitic %}
+            <h1>{{herb.glagolitic}}</h1>
+            <h3>{{herb.name}}</h3>
+        {% else %}
+            <h1>{{herb.name}}</h1>
+        {% endif %}
+    <p><i>{{herb.author.username}} {{herb.dateOfEntry|date('Y-m-d H:i:s')}}</i></p>
+    </center>
+    {% if app.user %}
+    <div style="display: flex; justify-content: flex-end">
+        <a href="/herb/edit/{{herb.id}}">
+            <button class="btn btn-lg btn-primary">
+                Edytuj
+            </button>
+        </a>
+        <a href="/herb/delete/{{herb.id}}">
+            <button class="btn btn-lg btn-primary">
+                Usuń
+            </button>
+        </a>
+    </div>
+    {% endif %}
+    <hr>
+    {{herb.description}}
+
+    </br></br>
+    
+    <h5>Właściwości:</h5>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Właściwość</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% set count = 1 %}
+            {% for property in herb.properties %}
+                <tr>
+                    <th scope="row">{{count}}</th>
+                    <td>{{property.name}}</td>
+                </tr>
+                {% set count = count + 1 %}
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

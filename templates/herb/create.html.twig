@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Dodaj zioło{% endblock %}
+
+{% block body %}
+
+<div class="example-wrapper">
+    <h1>Dodaj zioło</h1>
+    <hr>
+    {{ form_start(form) }}
+        {{ form_widget(form) }}
+        <button class="btn btn-lg btn-primary" type="submit">
+            Dodaj
+        </button>
+    {{ form_end(form) }}
+</div>
+{% endblock %}

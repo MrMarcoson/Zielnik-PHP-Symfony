@@ -1,0 +1,56 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Przepisy Ⱂ{% endblock %}
+
+{% block body %}
+
+<div class="example-wrapper">
+    <center>
+        <h1>Przepisy</h1>
+        <h3>ⰒⰆ/ⰞⰅⰒⰋⰔⰟⰉ</h3>
+    </center>
+    {% if app.user %}
+        <div style="display: flex; justify-content: flex-end">
+            <a href="/recipe/add">
+                <button class="btn btn-lg btn-primary">
+                    Dodaj przepis
+                </button>
+            </a>
+            <a href="/tag/add">
+                <button class="btn btn-lg btn-primary">
+                    Dodaj tag
+                </button>
+            </a>
+        </div>
+    {% endif %}
+    <hr>
+    <div>
+       <table class="table table-hover table-striped">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Nazwa</th>
+                <th scope="col">Poziom trudności</th>
+                <th scope="col">Tagi</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% set count = 1 %}
+            {% for recipe in recipes %}
+                <tr style='cursor: pointer; cursor: hand;' onclick="window.location='/recipe/get/{{recipe.id}}';">
+                        <th scope="row">{{count}}</th>
+                        <td>{{recipe.name}}</td>
+                        <td>{{recipe.difficulty}}</td>
+                        <td>
+
+                            {% for tag in recipe.tags %}
+                                <div class="tag">{{tag.name}}</div>
+                            {% endfor %}
+                        </td>
+                </tr>
+                {% set count = count + 1 %}
+            {% endfor %}
+        </tbody>
+    </div>
+</div>
+{% endblock %}

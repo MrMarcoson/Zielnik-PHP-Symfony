@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Zioła Ⰸ{% endblock %}
+
+{% block body %}
+
+<div class="example-wrapper">
+    <center>
+        <h1>Zioła</h1>
+        <h3>ⰈⰋⱁⰫⰀ</h3>
+    </center>
+    {% if app.user %}
+        <div style="display: flex; justify-content: flex-end">
+            <a href="/herb/add">
+                <button class="btn btn-lg btn-primary">
+                    Dodaj zioło
+                </button>
+            </a>
+            <a href="/property/add">
+                <button class="btn btn-lg btn-primary">
+                    Dodaj właściwość
+                </button>
+            </a>
+        </div>
+    {% endif %}
+    <hr>
+    <div>
+       <table class="table table-hover table-striped">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Nazwa</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% set count = 1 %}
+            {% for herb in herbs %}
+                <tr style='cursor: pointer; cursor: hand;' onclick="window.location='/herb/get/{{herb.id}}';">
+                        <th scope="row">{{count}}</th>
+                        <td>{{herb.name}}</td>
+                </tr>
+                {% set count = count + 1 %}
+            {% endfor %}
+        </tbody>
+    </div>
+</div>
+{% endblock %}

@@ -2,6 +2,10 @@
 <html>
     <head>
         <meta charset="UTF-8">
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+  
         <title>{% block title %}Welcome!{% endblock %}</title>
         <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
         {% block stylesheets %}
@@ -10,7 +14,74 @@
         {% block javascripts %}
         {% endblock %}
     </head>
-    <body>
+    <style>
+        .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+        .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+        .navbar-brand { color: white; }
+        .navbar-brand:hover { color: black; }
+        .nav-link:hover { color: white; }
+        .btn-primary { background: #F7F9FB; border-color: #31708E; color: black; margin-left: 10px;}
+        .btn-primary:hover { background: #8FC1E3; border-color: #F7F9FB; }
+        .record1 { background: #5085A5; border-color: #31708E; margin-top: 20px; padding: 15px; border-radius: 10px; }
+        .record1:hover { background: #8FC1E3;}
+        .record2 { background: #31708E; border-color: #5085A5; margin-top: 20px; padding: 15px; border-radius: 10px; }
+        .record2:hover { background: #8FC1E3;}
+        a { text-decoration: none; color: white; }
+        .tag { border-style: solid; border-width: 2px; border-color: #8FC1E3; margin-top: 1px; margin-right: 2px; padding: 5px; border-radius: 10px; float: left; font-size: 14px; }
+        .tag:hover { background: #8FC1E3; border-color: #F7F9FB; color:white; }
+        
+        body, html {
+            height: 100%;
+        }
+    
+        .banner {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("{{ asset('main.jpg')}}");
+            height: 100%;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            position: relative;
+        }
+
+        .banner-inside {
+            text-align: center;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+        }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+    <body style="background-color: #F7F9FB;">
+    <nav class="navbar navbar-expand-lg" style="background-color: #687864; color: white;">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/">ⰈⰋⰅⰎⰐⰋⰍ</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarText">
+            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                <a class="nav-link" href="/herb">Zioła</a>
+                </li>
+                <li class="nav-item">
+                <a class="nav-link" href="/recipe">Przepisy</a>
+                </li>
+                <li class="nav-item">
+                <a class="nav-link" href="/ingredient">Składniki</a>
+                </li>
+                <li class="nav-item">
+                {% if app.user %}
+                    <a class="nav-link" href="/logout">Witaj {{app.user.username}}!</a>
+                {% else %}
+                    <a class="nav-link" href="/login">Login</a>
+                {% endif %}
+                </li>
+            </ul>
+            </div>
+        </div>
+    </nav>
         {% block body %}{% endblock %}
     </body>
 </html>

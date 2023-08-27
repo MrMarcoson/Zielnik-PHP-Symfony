@@ -1,0 +1,83 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello HerbController!{% endblock %}
+
+{% block body %}
+
+<div class="example-wrapper">
+    <center>
+        <h1>{{recipe.name}}</h1>
+        <h4>Trudność: {{recipe.difficulty}}</h4>
+        <p><i>{{recipe.author.username}} {{recipe.dateOfEntry|date('Y-m-d H:i:s')}}</i></p>
+    </center>
+    {% if app.user %}
+    <div style="display: flex; justify-content: flex-end">
+        <a href="/recipe/edit/{{recipe.id}}">
+            <button class="btn btn-lg btn-primary">
+                Edytuj
+            </button>
+        </a>
+        <a href="/recipe/delete/{{recipe.id}}">
+            <button class="btn btn-lg btn-primary">
+                Usuń
+            </button>
+        </a>
+    </div>
+    {% endif %}
+    <hr>
+
+    <div>
+        {% for tag in recipe.tags %}
+                <div class="tag">{{tag.name}}</div>
+        {% endfor %}
+    </div>
+
+    </br></br>
+
+    <div style="clear: both">
+        {{recipe.description}}
+    </div>
+
+    </br>
+
+    <h5>Zioła:</h5>
+    <table class="table table-hover table-striped">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Nazwa</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% set count = 1 %}
+            {% for herb in recipe.herbs %}
+                <tr style='cursor: pointer; cursor: hand;' onclick="window.location='/herb/get/{{herb.id}}';">
+                    <th scope="row">{{count}}</th>
+                    <td>{{herb.name}}</td>
+                </tr>
+                {% set count = count + 1 %}
+            {% endfor %}
+        </tbody>
+    </table>
+    
+    <h5>Składniki:</h5>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Nazwa</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% set count = 1 %}
+            {% for ingredient in recipe.ingredients %}
+                <tr>
+                    <th scope="row">{{count}}</th>
+                    <td>{{ingredient.name}}</td>
+                </tr>
+                {% set count = count + 1 %}
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}
