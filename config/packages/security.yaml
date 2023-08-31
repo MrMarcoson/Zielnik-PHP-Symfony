@@ -36,6 +36,11 @@ security:
         - { path: ^/herb/delete, roles: ROLE_USER }
         - { path: ^/herb/edit, roles: ROLE_USER }
         - { path: ^/property/create, roles: ROLE_USER }
+        - { path: ^/tag/create, roles: ROLE_USER }
+        - { path: ^/ingredient/create, roles: ROLE_USER }
+        - { path: ^/recipe/create, roles: ROLE_USER }
+        - { path: ^/recipe/delete, roles: ROLE_USER }
+        - { path: ^/recipe/edit, roles: ROLE_USER }
 
 when@test:
     security:
